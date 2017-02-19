@@ -4,8 +4,8 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:author_name) %>:</strong></dt>
-  <dd><%= @issue.author_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:assignee_name) %>:</strong></dt>
+  <dd><%= @issue.assignee_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:issue_url) %>:</strong></dt>
   <dd><%= @issue.issue_url %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
@@ -17,11 +17,11 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              issues_path, :class => 'btn btn-default'  %>
+              milestone_issues_path(@milestone), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_issue_path(@issue), :class => 'btn btn-default' %>
+              edit_milestone_issue_path(@milestone, @issue), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              issue_path(@issue),
+              milestone_issue_path(@milestone, @issue),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

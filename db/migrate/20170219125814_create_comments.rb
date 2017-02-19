@@ -5,6 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :issue_id
       t.boolean :state
       t.text    :description
+      t.timestamps
     end
   end
 end

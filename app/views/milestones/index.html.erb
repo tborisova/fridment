@@ -24,6 +24,8 @@
         <td><%= milestone.state %></td>
         <td><%=l milestone.created_at %></td>
         <td>
+          <%= link_to t('.issues', :default => t("helpers.links.issues")),
+                      milestone_issues_path(milestone), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_milestone_path(milestone), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

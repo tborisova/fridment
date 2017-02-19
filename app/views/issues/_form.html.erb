@@ -1,4 +1,4 @@
-<%= form_for @issue, :html => { :class => "form-horizontal issue" } do |f| %>
+<%= form_for [@milestone, @issue], :html => { :class => "form-horizontal issue" } do |f| %>
 
   <% if @issue.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -16,11 +16,11 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :author_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :assignee_name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :author_name, :class => 'form-control' %>
+      <%= f.text_field :assignee_name, :class => 'form-control' %>
     </div>
-    <%=f.error_span(:author_name) %>
+    <%=f.error_span(:assignee_name) %>
   </div>
   <div class="form-group">
     <%= f.label :issue_url, :class => 'control-label col-lg-2' %>
@@ -43,19 +43,14 @@
     </div>
     <%=f.error_span(:description) %>
   </div>
-  <div class="form-group">
-    <%= f.label :milestone_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :milestone_id, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:milestone_id) %>
-  </div>
+  <%= f.hidden_field :milestone_id, :class => 'form-control', value: @milestone.id %>
+    
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                issues_path, :class => 'btn btn-default' %>
+                milestone_issues_path(@milestone), :class => 'btn btn-default' %>
     </div>
   </div>
 

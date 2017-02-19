@@ -5,6 +5,7 @@ class CreateMilestones < ActiveRecord::Migration
       t.text :description
       t.integer :author_id
       t.integer :state
+      t.timestamps
     end
   end
 end

@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:author_name) %></th>
+      <th><%= model_class.human_attribute_name(:assignee_name) %></th>
       <th><%= model_class.human_attribute_name(:issue_url) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
@@ -18,8 +18,8 @@
   <tbody>
     <% @issues.each do |issue| %>
       <tr>
-        <td><%= link_to issue.id, issue_path(issue) %></td>
-        <td><%= issue.author_name %></td>
+        <td><%= link_to issue.id, milestone_issue_path(@milestone, issue) %></td>
+        <td><%= issue.assignee_name %></td>
         <td><%= issue.issue_url %></td>
         <td><%= issue.name %></td>
         <td><%= issue.description %></td>
@@ -27,9 +27,9 @@
         <td><%=l issue.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_issue_path(issue), :class => 'btn btn-default btn-xs' %>
+                      edit_milestone_issue_path(@milestone, issue), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      issue_path(issue),
+                      milestone_issue_path(@milestone, issue),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -40,5 +40,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_issue_path,
+            new_milestone_issue_path(params[:milestone_id]),
             :class => 'btn btn-primary' %>
