@@ -13,7 +13,7 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @issue.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:milestone_id) %>:</strong></dt>
-  <dd><%= @issue.milestone.name %></dd>
+  <dd><%= link_to @issue.milestone.name, milestone_path(@issue.milestone) %></dd>
   <dt><strong>Testers:</strong></dt>
   <dd><%= @issue.testers.map(&:email).join(", ") %></dd>
 </dl>

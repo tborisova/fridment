@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:author_id) %>:</strong></dt>
   <dd><%= @milestone.author_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-  <dd><%= @milestone.state %></dd>
+  <dd><%= Milestone::MILESTONE_STATES[@milestone.state] %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

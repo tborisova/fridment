@@ -8,6 +8,10 @@ class MilestonesController < ApplicationController
     @milestone = Milestone.new
   end
 
+  def show
+    @milestone = Milestone.find params[:id]
+  end
+
   def edit
     @milestone = Milestone.find params[:id]
   end

@@ -17,17 +17,17 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= link_to comment.id, comment_path(comment) %></td>
-        <td><%= comment.author_id %></td>
-        <td><%= comment.issue_id %></td>
+        <td><%= link_to comment.id, milestone_issue_comment_path(@milestone, @issue, comment) %></td>
+        <td><%= comment.author.email %></td>
+        <td><%= link_to comment.issue_id, milestone_issue_path(@milestone, @issue) %></td>
         <td><%= comment.state %></td>
         <td><%= comment.description %></td>
         <td><%=l comment.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_comment_path(comment), :class => 'btn btn-default btn-xs' %>
+                      edit_milestone_issue_comment_path(@milestone, @issue, comment), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      comment_path(comment),
+                      milestone_issue_comment_path(@milestone, @issue, comment),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -38,5 +38,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_comment_path,
+            new_milestone_issue_comment_path(@milestone, @issue),
             :class => 'btn btn-primary' %>

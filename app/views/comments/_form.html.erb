@@ -1,4 +1,4 @@
-<%= form_for @comment, :html => { :class => "form-horizontal comment" } do |f| %>
+<%= form_for [@milestone, @issue, @comment], :html => { :class => "form-horizontal comment" } do |f| %>
 
   <% if @comment.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -14,25 +14,12 @@
       </div>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :author_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :author_id, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:author_id) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :issue_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :issue_id, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:issue_id) %>
-  </div>
+  <%= f.hidden_field :author_id, value: current_user.id, :class => 'form-control' %>
+  <%= f.hidden_field :issue_id, value: @issue.id, :class => 'form-control' %>
   <div class="form-group">
     <%= f.label :state, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :state, :class => 'form-control' %>
+      <%= f.select :state, [['working', 1], ['not_working', 0]], :class => 'form-control' %>
     </div>
     <%=f.error_span(:state) %>
   </div>
@@ -48,7 +35,7 @@
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                comments_path, :class => 'btn btn-default' %>
+                milestone_issue_comments_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
