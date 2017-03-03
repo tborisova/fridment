@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :comments
     end
     post :get_issues
+    post :finish
   end
 
   #     member do

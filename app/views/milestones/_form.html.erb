@@ -14,7 +14,8 @@
       </div>
     </div>
   <% end %>
-
+  <%= f.hidden_field :author_id, value: current_user.id %>
+  <%= f.hidden_field :state, value: 1 %>
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

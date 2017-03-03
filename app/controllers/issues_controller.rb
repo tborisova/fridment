@@ -1,8 +1,8 @@
 class IssuesController < ApplicationController
 
   def index
-    @issues = Issue.where(params[:milestone_id])
     @milestone = Milestone.find params[:milestone_id]
+    @issues = @milestone.issues
   end
 
   def edit
@@ -29,7 +29,11 @@ class IssuesController < ApplicationController
     @milestone = @issue.milestone
   end
 
-  def issue_params
-    params.require(:issue).permit(:assignee_name)
+  def create
+    @milestone = Milestone.find(params[:milestone_id])
+    IssuesGeneratorJob.perform_later(params[:date_from], params[:date_to], @milestone.id)
+    
+    flash[:notice] = "Issues will be exported shortly!"
+    redirect_to milestone_issues_path(@milestone)
   end
 end

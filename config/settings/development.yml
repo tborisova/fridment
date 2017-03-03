@@ -1,0 +1,3 @@
+project:
+  url: 'https://api.github.com/repos/tborisova/fridment/issues'
+  label: 'enhancement'

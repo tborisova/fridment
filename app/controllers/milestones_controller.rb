@@ -18,11 +18,15 @@ class MilestonesController < ApplicationController
     redirect_to action: :index
   end
 
-  def get_issues
-    Issue.get_issues(params[:id])
+  def finish
+    @milestone = Milestone.find params[:milestone_id]
+
+    @milestone.update_attribute(:state, 2)
   end
 
+  private
+
   def milestone_params
-    params.require(:milestone).permit(:name, :description, :id)
+    params.require(:milestone).permit(:name, :description, :id, :author_id, :state)
   end
 end

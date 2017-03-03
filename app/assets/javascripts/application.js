@@ -15,3 +15,17 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+ //= require bootstrap-datepicker
+
+$(document).on("focus", "[data-behaviour~='datepicker']", function(e) {
+  -$(this).datepicker;
+  -({
+    format: "dd-mm-yyyy"
+  });
+  -({
+    weekStart: 1
+  });
+  return -{
+    autoclose: true
+  };
+});

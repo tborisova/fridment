@@ -16,33 +16,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :assignee_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :date_from, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :assignee_name, :class => 'form-control' %>
+      <%= date_field_tag :date_from  %>
     </div>
-    <%=f.error_span(:assignee_name) %>
   </div>
+
   <div class="form-group">
-    <%= f.label :issue_url, :class => 'control-label col-lg-2' %>
+    <%= f.label :date_to, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :issue_url, :class => 'form-control' %>
+      <%= date_field_tag :date_to  %>
     </div>
-    <%=f.error_span(:issue_url) %>
   </div>
-  <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:name) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:description) %>
-  </div>
+
   <%= f.hidden_field :milestone_id, :class => 'form-control', value: @milestone.id %>
     
 

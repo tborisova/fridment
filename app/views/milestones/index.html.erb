@@ -11,28 +11,39 @@
       <th><%= model_class.human_attribute_name(:author_id) %></th>
       <th><%= model_class.human_attribute_name(:state) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th colspan="4"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="milestones">
     <% @milestones.each do |milestone| %>
       <tr>
         <td><%= link_to milestone.id, milestone_path(milestone) %></td>
         <td><%= milestone.name %></td>
         <td><%= milestone.description %></td>
-        <td><%= milestone.author_id %></td>
-        <td><%= milestone.state %></td>
+        <td><%= milestone.try(:author).try(:email) %></td>
+        <td id="milestone_<%= milestone.id%>"><%= Milestone::MILESTONE_STATES[milestone.state] %></td>
         <td><%=l milestone.created_at %></td>
+        <td>
+          <%= link_to 'Generate issues',
+                      new_milestone_issue_path(milestone), :class => 'btn btn-default btn-xs' %>
+        </td>
         <td>
           <%= link_to t('.issues', :default => t("helpers.links.issues")),
                       milestone_issues_path(milestone), :class => 'btn btn-default btn-xs' %>
+        </td>
+        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_milestone_path(milestone), :class => 'btn btn-default btn-xs' %>
+        </td>
+        <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       milestone_path(milestone),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+        </td>
+        <td>  
+          <%= link_to 'Finish milestone', milestone_finish_path(milestone), method: :post, remote: true, class: 'btn btn-xs btn-default' %>
         </td>
       </tr>
     <% end %>
