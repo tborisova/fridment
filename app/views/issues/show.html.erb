@@ -13,13 +13,13 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @issue.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:milestone_id) %>:</strong></dt>
-  <dd><%= @issue.milestone_id %></dd>
+  <dd><%= @issue.milestone.name %></dd>
+  <dt><strong>Testers:</strong></dt>
+  <dd><%= @issue.testers.map(&:email).join(", ") %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               milestone_issues_path(@milestone), :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_milestone_issue_path(@milestone, @issue), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               milestone_issue_path(@milestone, @issue),
               :method => 'delete',

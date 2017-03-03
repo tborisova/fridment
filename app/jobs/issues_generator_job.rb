@@ -2,7 +2,7 @@ class IssuesGeneratorJob < ApplicationJob
   queue_as :default
 
   def perform(date_from, date_to, milestone_id)
-    url = URI.parse("#{Settings.project.url}?labels=#{Settings.project.label}&since=2017-02-0100:00:00Z")
+    url = URI.parse("#{Settings.project.url}?labels=#{Settings.project.label}")
     header = { 'Accept' => 'application/vnd.github.v3+json' }
 
     connection = Net::HTTP.new(url.host, url.port)

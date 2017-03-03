@@ -1,0 +1,19 @@
+<%= form_for [@milestone, @issue], url: milestone_issue_create_testers_path(@milestone, @issue), method: :post,  :html => { :class => "form-horizontal issue" } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :tester, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+    <%= select_tag :testers, options_for_select(User.all.collect{ |u| [u.email, u.id] }), :prompt => "Please select",
+                                                    :multiple => true, :size => 5 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Add testers', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                milestone_issue_path(@milestone, @issue), :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

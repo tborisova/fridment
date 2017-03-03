@@ -36,4 +36,15 @@ class IssuesController < ApplicationController
     flash[:notice] = "Issues will be exported shortly!"
     redirect_to milestone_issues_path(@milestone)
   end
+
+  def add_testers
+    @issue = Issue.find params[:issue_id]
+    @milestone = @issue.milestone
+  end
+
+  def create_testers
+    IssueTester.create_testers(params[:testers], params[:issue_id])
+    @issue = Issue.find(params[:issue_id])
+    redirect_to milestone_issues_path(@issue.milestone)
+  end
 end

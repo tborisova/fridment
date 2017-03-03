@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   # Example resource route with options:
   resources :milestones do
     resources :issues do
+      get :add_testers
+      post :create_testers
       resources :comments
     end
     post :get_issues
