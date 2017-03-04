@@ -53,3 +53,4 @@ gem 'pry-rails', :group => :development
 gem 'bootstrap-datepicker-rails'
 gem 'sidekiq'
 gem 'config'
+gem "breadcrumbs_on_rails"

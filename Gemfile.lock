@@ -44,6 +44,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     byebug (9.0.6)
     coderay (1.1.1)
@@ -204,6 +205,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-datepicker-rails
+  breadcrumbs_on_rails
   byebug
   coffee-rails (~> 4.1.0)
   config

@@ -1,3 +1,4 @@
+<%= render_breadcrumbs %>
 <%- model_class = Issue -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
@@ -16,6 +17,8 @@
   <dd><%= link_to @issue.milestone.name, milestone_path(@issue.milestone) %></dd>
   <dt><strong>Testers:</strong></dt>
   <dd><%= @issue.testers.map(&:email).join(", ") %></dd>
+  <dt><strong>Comments:</strong></dt>
+  <dd><%= link_to 'view', milestone_issue_comments_path(@issue.milestone, @issue) %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -1,3 +1,4 @@
+<%= render_breadcrumbs %>
 <%- model_class = Issue -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -49,7 +50,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_milestone_issue_path(params[:milestone_id]),
-            :class => 'btn btn-primary' %>

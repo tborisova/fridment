@@ -3,16 +3,8 @@ class IssuesController < ApplicationController
   def index
     @milestone = Milestone.find params[:milestone_id]
     @issues = @milestone.issues
-  end
-
-  def edit
-    @milestone = Milestone.find params[:milestone_id]
-    @issue = @milestone.issues.find params[:id]
-  end
-
-  def new
-    @issue = Issue.new
-    @milestone = Milestone.find params[:milestone_id]
+    add_breadcrumb 'Milestones', milestones_path
+    add_breadcrumb @milestone.name, milestone_issues_path(@milestone)
   end
 
   def update
@@ -27,6 +19,9 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find params[:id]
     @milestone = @issue.milestone
+    add_breadcrumb 'Milestones', milestones_path
+    add_breadcrumb 'Issues', milestone_issues_path(@milestone)
+    add_breadcrumb @issue.name, milestone_issue_path(@milestone, @issue)
   end
 
   def create
@@ -40,6 +35,9 @@ class IssuesController < ApplicationController
   def add_testers
     @issue = Issue.find params[:issue_id]
     @milestone = @issue.milestone
+    add_breadcrumb 'Milestones', milestones_path
+    add_breadcrumb 'Issues', milestone_issues_path(@milestone)
+    add_breadcrumb "Testers for #{@issue.name}", milestone_issue_path(@milestone, @issue)
   end
 
   def create_testers
