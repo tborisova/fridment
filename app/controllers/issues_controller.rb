@@ -23,7 +23,12 @@ class IssuesController < ApplicationController
     add_breadcrumb 'Issues', milestone_issues_path(@milestone)
     add_breadcrumb @issue.name, milestone_issue_path(@milestone, @issue)
   end
-
+  
+  def new
+    @issue = Issue.new
+    @milestone = Milestone.find params[:milestone_id]
+  end
+  
   def create
     @milestone = Milestone.find(params[:milestone_id])
     IssuesGeneratorJob.perform_later(params[:date_from], params[:date_to], @milestone.id)
