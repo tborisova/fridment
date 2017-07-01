@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
     post :get_issues
     post :finish
+    post :open
   end
 
   #     member do

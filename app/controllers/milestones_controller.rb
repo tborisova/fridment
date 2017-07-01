@@ -2,6 +2,8 @@ class MilestonesController < ApplicationController
 
   def index
     @milestones = Milestone.all
+
+    render json: @milestones
   end
 
   def new
@@ -10,6 +12,7 @@ class MilestonesController < ApplicationController
 
   def show
     @milestone = Milestone.find params[:id]
+    render json: @milestone
   end
 
   def edit
@@ -18,7 +21,6 @@ class MilestonesController < ApplicationController
 
   def create
     @milestone = Milestone.create(milestone_params)
-    
     redirect_to action: :index
   end
 
@@ -26,6 +28,13 @@ class MilestonesController < ApplicationController
     @milestone = Milestone.find params[:milestone_id]
 
     @milestone.update_attribute(:state, 2)
+    render :nothing => true, :status => 200, :content_type => 'application/json'
+  end
+  def open
+    @milestone = Milestone.find params[:milestone_id]
+
+    @milestone.update_attribute(:state, 1)
+    render :nothing => true, :status => 200, :content_type => 'application/json'
   end
 
   private

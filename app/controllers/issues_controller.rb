@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
     @issues = @milestone.issues
     add_breadcrumb 'Milestones', milestones_path
     add_breadcrumb @milestone.name, milestone_issues_path(@milestone)
+    render json: @issues
   end
 
   def update
@@ -30,6 +31,7 @@ class IssuesController < ApplicationController
   end
   
   def create
+    p 'DHDHDHDHDHHD'
     @milestone = Milestone.find(params[:milestone_id])
     IssuesGeneratorJob.perform_later(params[:date_from], params[:date_to], @milestone.id)
     

@@ -10,7 +10,7 @@ class IssuesGeneratorJob < ApplicationJob
 
     request = Net::HTTP::Get.new(url.request_uri, header)
     response = connection.request(request)
-  
+
     if response.code == "200"
       issues = JSON.parse(response.body)
       issues.each do |issue|
